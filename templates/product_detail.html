@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{car.brand}} {{car.name}}{% endblock title %}
+{% block content %}
+
+    <main class="car-detail">
+        <section class="car-info">
+            <div class="car-image">
+                <img src="{{ car.image.url }}" alt="{{ car.brand }} {{ car.name }}">
+            </div>
+            <div class="car-details">
+                <h1>{{ car.brand }} {{ car.name }}</h1>
+                <br>
+                <p class="price">Price: ₹{{ car.price }}</p><br>
+                <p class="fuel-type">Fuel Type : {{ car.fuel }}</p><br>
+                <p class="Horsepower">Horsepower : {{ car.horsepower }}</p>
+                <p class="Horsepower">Torque : {{ car.torque }}</p><br>
+                <p class="Horsepower">Transmission : {{ car.transmission }}</p>
+
+            </div>
+        </section>
+
+        <!-- cars -->
+        <section class="similar-cars">
+            <h2>Similar Cars</h2><br>
+            <div class="car-list">
+                {% for car in similar_cars %}
+                    <div class="car-card">
+                        <a href={% url 'details' car.id %}>
+                            <img src="{{ car.image.url }}" alt=""></a>
+                            <h3>{{ car.brand }} {{ car.name }}</h3>
+                            <p>Price: ₹{{ car.price }}</p>
+                        
+                    </div>
+                {% empty %}
+                    <p>No similar cars found.</p>
+                {% endfor %}
+            </div>
+        </section>
+        <br><br>
+
+        <!-- recently visited cars-->
+        <section class="similar-cars">
+            <h2>Recently visited</h2><br>
+            <div class="car-list">
+                {% for car in recent_visited %}
+                    <div class="car-card">
+                        <a href={% url 'details' car.id %}>
+                            <img src="{{ car.image.url }}" alt=""></a>
+                            <h3>{{ car.brand }} {{ car.name }}</h3>
+                            <p>Price: ₹{{ car.price }}</p>
+                        
+                    </div>
+                {% empty %}
+                    <p>No similar cars found.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock content %}

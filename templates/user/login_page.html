@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Login {% endblock title %}Login 
+
+
+{% block content %}
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+{% for message in messages %}
+        <p style="color: red;">{{ message }}</p>
+    {% endfor %}
+
+<div class="login-container">
+    <form class="login-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Login</h2>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br><br>
+        <br><br>
+
+        <button class="btn-login" type="submit">Login</button>
+        <p class="signup-text">Don't have an account? <a href="{%url 'signup_user'%}">Sign up</a></p>
+    </form>
+</div>
+
+{% endblock content %}
+
+

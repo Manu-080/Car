@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{% endblock title %}
+
+{% block content %}
+
+<!-- search by car model -->
+ <div class="container1 my-3">
+
+{% if  searched|length < 1 %}
+
+<P>Your Search -<b>{{search}}</b>- did not match any documents
+
+    Suggestions:
+
+    Try different keywords.
+</P>
+{% else %}
+<h3>Searched products</h3>
+
+{% endif %}
+</div>
+<!-- Car List Section -->
+<ul class="car-list1">
+    {% for car in searched %}
+    <li class="car-item1">
+        <a href={% url 'details' car.id%}>
+        <img src={{car.image.url}} alt="Car Image"></a>
+        <div class="car-details1">
+            <div class="car-name1">{{car.brand}},{{car.name}}</div>
+            <div class="car-price1">₹ {{car.price}}</div>
+            <div class="car-info1">Fuel : {{car.fuel}}| Body type {{car.body}}: </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+
+{% endblock content %}

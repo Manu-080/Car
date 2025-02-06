@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{{brand_obj.name}} Cars{% endblock title %}
+
+
+{% block content %}
+
+<!-- Search Bar -->
+
+<section class="search-bar">
+    <input type="text" placeholder="Search by make, model, or year..." name="search"/>
+    <button type="button">Search</button>
+</section>
+
+
+<!-- Car List Section -->
+<ul class="car-list1">
+    {% for car in brand %}
+    <li class="car-item1">
+        <a href={% url 'details' car.id %}>
+        <img src={{car.image.url}} alt="Car Image"></a>
+        <div class="car-details1">
+            <div class="car-name1">{{car.brand}},{{car.name}}</div>
+            <div class="car-price1">₹ {{car.price}}</div>
+            <div class="car-info1">Fuel: {{car.fuel}}| Body type: {{car.body}}</div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
+
+

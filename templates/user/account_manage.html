@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Manage{% endblock title %}
+
+{% block content %}
+
+<div class="container-management">
+    <header>
+      <h1>Account Management</h1>
+    </header>
+    
+    <main class="main-acc">
+      <section class="account-details">
+        <h2 class="acc-h2">Account Details</h2>
+        <p><strong>Name:</strong> </p>
+        <p><strong>Email:</strong> </p>
+      </section>
+
+      <section class="update-info">
+        <h2 class="acc-h2">Update Information</h2>
+        <form>
+          <label class="acc-label" for="name">Name</label>
+          <input class="acc-input" type="text" id="name" name="name" placeholder="Enter new name">
+
+          <label class="acc-label" for="email">Email</label>
+          <input class="acc-input" type="email" id="email" name="email" placeholder="Enter new email">
+
+          <button class="btn-login" type="submit">Update Info</button>
+        </form>
+      </section>
+
+      <section class="update-info">
+        <h2 class="acc-h2">Change Password</h2>
+        <form>
+          <label class="acc-label" for="current-password">Current Password</label>
+          <input class="acc-input" type="password" id="current-password" name="current-password" placeholder="Enter current password">
+
+          <label class="acc-label" for="new-password">New Password</label>
+          <input class="acc-input" type="password" id="new-password" name="new-password" placeholder="Enter new password">
+
+          <label class="acc-label" for="confirm-password">Confirm New Password</label>
+          <input class="acc-input" type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password">
+
+          <button class="btn-login" type="submit">Change Password</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+{% endblock content %}

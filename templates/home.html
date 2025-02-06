@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}CarWale - Find Your Dream Car{% endblock title %}
+
+{% block content %}
+
+    <section class="hero">
+        <h1>Find Your Dream Car</h1>
+        <p>Search from a wide range of cars across different brands and models.</p>
+        <form method="get" action="{% url 'search-car'%}">
+            <input type="text" name="search" id="search"placeholder="Search for cars, models, brands..." required>
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <section class="featured-cars">
+        <h2>Featured Cars</h2><br>
+        <div class="car-list">
+            {% for car_obj in cars%}
+                <div class="car-card">
+                    <a href={% url 'details' car_obj.id %}><img src="{{ car_obj.image.url }}" alt="images"></a>
+                    <h3>{{ car_obj.brand }} {{ car_obj.name }}</h3>
+                    <p>Price: ₹{{ car_obj.price }}</p>
+                    
+                </div>
+            {% empty %}
+                <p>No featured cars available at the moment.</p>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- latets cars -->
+    <section class="latest-listings">
+        <h2>Latest Listings</h2><br>
+        <div class="car-list">
+            {% for car in latest_cars %}
+                <div class="car-card">
+                    <a href="{% url 'details' car.id %}"><img src="{{ car.image.url }}" alt="{{ car.brand }}">
+                        </a>
+                    <h3>{{ car.brand }} {{ car.name }}</h3>
+                    <p>Price: ₹{{ car.price }}</p>
+                    <input type="hidden" value="{{car.body.id}}" name="body_id">
+                     
+                </div>
+            
+            {% endfor %}
+        </div>
+    </section>
+     <!-- Container for car brands -->
+     <div class="container">
+        <div class="title">Popular Car Brands</div>
+        <div class="brands-grid">
+            
+            <!-- Individual car brand card -->
+             {% for brand in brand_detail %}
+            <div class="brand-card">
+                {% if brand.image %}
+                <a href={% url 'brand_list' brand.id%}>
+                <img src={{brand.image.url}} alt="Toyota" class="brand-logo"></a>{% endif %}
+                <div class="brand-name">{{brand.name}}</div>
+                
+            </div>
+            {% endfor %}
+
+            <!-- Add more brands as needed -->
+            
+        </div>
+    </div>
+
+    {% endblock content %}
